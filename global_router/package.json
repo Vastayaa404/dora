@@ -1,0 +1,20 @@
+{
+  "name": "router_service",
+  "version": "1.1.2",
+  "description": "REST API Router Service",
+  "type": "module",
+  "scripts": {
+    "dev": "node global.router.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^2.0.6",
+    "morgan": "^1.10.0"
+  }
+}
