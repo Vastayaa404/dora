@@ -87,8 +87,6 @@ const verifyMailToken = (req, res, next) => { // Parse from id url
 
 const isAdmin = async (req, res, next) => {
   try {
-    if (!req.userId) { throw ApiError.Forbidden("No User Detected. Aborting") };
-
     const user = await User.findByPk(req.userId);
     const roles = await user.getRoles(); // get roles for finded user
 
@@ -99,7 +97,7 @@ const isAdmin = async (req, res, next) => {
       }
     }
 
-    throw ApiError.Forbidden("Require Admin Role!");
+    throw ApiError.Unauthorized("Require Admin Role!");
   } catch (e) { next(e) };
 };
 

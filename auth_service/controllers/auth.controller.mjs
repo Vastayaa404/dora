@@ -29,6 +29,7 @@ const signin = async (req, res, next) => {
 
     const passwordIsValid = await bcrypt.compare(req.body.password, user.password);
     if (!passwordIsValid) { throw ApiError.Unauthorized("Invalid Username or Password") };
+    if (user.isBanned === 'true') { throw ApiError.Forbidden("Your account has been deactivated.") }
 
     const { accessToken, refreshToken } = authJwt.createToken(user);
     const token = await Token.findOne({ where: { username: req.body.username } });
@@ -56,8 +57,13 @@ const signup = async (req, res, next) => {
   } catch (e) { next(e) };
 };
 
+const upload = (req, res) => {
+  res.status(200).send({ msg: "Preupload check complete" });
+};
+
 export const auth_controller = {
   refresh: refresh,
   signin: signin,
-  signup: signup
+  signup: signup,
+  upload: upload
 };

@@ -19,10 +19,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 photoapp_router.get('/', (req, res) => {
-  const directoryPath = `${import.meta.url}/../../X-Storage`;
-  fs.readdir(directoryPath, (err, files) => {
-    if (err) { res.status(500).send("Error reading photos directory") } else {
-      const photos = files.map(file => `http://localhost:7000/X-Storage/${file}`); res.json(photos) };
+  fs.readdir('/var/www/dora/X-Storage', (err, files) => {
+    if (err || files.length < 1) { res.status(405).send(`The directory is empty or an error has occurred, ${err}`) } 
+    else { const photos = files.map(file => `https://dora-api.tech/api/lite/storage/${file}`); res.json(photos) };
   });
 });
 

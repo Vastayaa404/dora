@@ -3,6 +3,7 @@
 import ApiError from '../global_router/exceptions/api.errors.mjs';
 import cookieParser from 'cookie-parser';
 import 'dotenv/config';
+import auth from './router/auth.router.mjs'; // Import local router module (Auth)
 import express from 'express';
 import errorMiddleware from '../global_router/exceptions/errors.middleware.mjs';
 const app = express();
@@ -17,11 +18,10 @@ app.use((e, req, res, next) => {
     next(e);
 });
 
-// *** ADD AUTHORIZATION ROUTER ***
-import auth from './router/auth.router.mjs';
+// *** USE AUTHORIZATION ROUTER ***
 app.use('/api/auth', auth);
+// ********************************
 
 app.use(errorMiddleware); // Custom Error Handler
 
-// Start API process
-app.listen(PORT, '127.0.0.1', () => console.log(`Authorization Server started on port ${PORT}, check refresh token method without data (for try error middleware)`));
+app.listen(PORT, '127.0.0.1', () => console.log(`Authorization Server started on port ${PORT}`));

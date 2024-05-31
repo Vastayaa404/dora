@@ -10,7 +10,7 @@ const morganFormat = (tokens, req, res) => {
     const statusColor = status >= 500 ? 'red' : status >= 400 ? 'yellow' : status >= 300 ? 'cyan' : status >= 200 ? 'green' : 'reset';
 
     return `${chalk[statusColor](tokens.method(req, res))} ${chalk[statusColor](tokens.url(req, res))} from [${tokens.ip(req, res)}]` +
-    ` responded ${chalk[statusColor](status)} ${tokens.referrer(req, res) || '[no ref]'} - ${tokens['response-time'](req, res)} ms at` +
+    ` responded ${chalk[statusColor](status)} to [${tokens.referrer(req, res) || 'no ref'}] - ${tokens['response-time'](req, res)} ms at` +
     ` [${tokens.date(req, res, 'web')}]`
 };
 
