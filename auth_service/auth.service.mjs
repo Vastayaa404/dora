@@ -1,11 +1,11 @@
 // Authentication Server v1.3.0
 // Connect all dependencies
-import ApiError from '../global_router/exceptions/api.errors.mjs';
+import ApiError from '../router_service/middleware/api.errors.mjs';
 import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import auth from './router/auth.router.mjs'; // Import local router module (Auth)
 import express from 'express';
-import errorMiddleware from '../global_router/exceptions/errors.middleware.mjs';
+import errorMiddleware from '../router_service/middleware/errors.middleware.mjs';
 const app = express();
 const PORT = process.env.PORT;
 

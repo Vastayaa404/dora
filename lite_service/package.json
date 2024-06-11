@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "node lite.pm.mjs"
+    "dev": "node lite.service.mjs"
   },
   "keywords": [],
   "author": "",

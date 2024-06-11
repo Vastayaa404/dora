@@ -1,4 +1,4 @@
-import ApiError from '../../global_router/exceptions/api.errors.mjs'; // Custom Api Errors
+import ApiError from '../../router_service/middleware/api.errors.mjs'; // Custom Api Errors
 import db from '../models/index.mjs';
 import jwt from 'jsonwebtoken';
 const Token = db.token;
@@ -51,9 +51,9 @@ const verifyAccessToken = (req, res, next) => {
   } catch (e) { next(e) };
 };
 
-const verifyRefreshToken = (req, res, next) => { // Parse from httpOnly cookies automatically (if req withCredentials = true)
+const verifyRefreshToken = (req, res, next) => {
   try {
-    let token = req.cookies.refreshToken;
+    let token = req.cookies.refreshToken; // Parse from httpOnly cookies automatically (if req withCredentials = true)
     if (!token) { throw ApiError.Forbidden("Refresh token not found!") };
 
     jwt.verify(token, process.env.JWT_REFRESH_KEY, { issuer: 'Dora authorization service' },
@@ -70,9 +70,9 @@ const verifyRefreshToken = (req, res, next) => { // Parse from httpOnly cookies 
   } catch (e) { next(e) };
 };
 
-const verifyMailToken = (req, res, next) => { // Parse from id url
+const verifyMailToken = (req, res, next) => {
   try {
-    let token = req.params.id;
+    let token = req.params.id; // Parse from id url
     if (!token) { throw ApiError.NotFound("Email token not found!") };
 
     jwt.verify(token, process.env.JWT_MAIL_KEY, { issuer: 'Dora email service' },

@@ -4,7 +4,7 @@
   "description": "auth service",
   "type": "module",
   "scripts": {
-    "dev": "node auth.server.mjs"
+    "dev": "node auth.service.mjs"
   },
   "keywords": [],
   "author": "",

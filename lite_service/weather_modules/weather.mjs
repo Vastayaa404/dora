@@ -1,13 +1,12 @@
 // *** WEATHER SERVICE MODULE ***
 // Connect all dependencies
 import axios from 'axios';
-import bodyParser from 'body-parser';
 import express from 'express';
 const weather_router = express.Router();
 const APIurl = process.env.WEA_API_KEY;
 
-weather_router.use(bodyParser.urlencoded({ extended: true }));
-weather_router.use(bodyParser.json());
+weather_router.use(express.urlencoded({ extended: true }));
+weather_router.use(express.json());
 
 // Module functionality
 weather_router.post('/', async (req, res) => {

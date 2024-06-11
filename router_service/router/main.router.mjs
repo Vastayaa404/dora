@@ -17,4 +17,10 @@ const liteProjects = createProxyMiddleware({ target: 'http://localhost:7000',
                                             onError: (err, req, res) => { res.status(504).send("..oops, our Manager service is unavailable, but we will fix it :)")} });
 router.use('/lite', liteProjects);
 
+// *** PROXY TO REPORT SERVICE ***
+const reports = createProxyMiddleware({ target: 'http://localhost:8000',
+                                            changeOrigin: true, 
+                                            onError: (err, req, res) => { res.status(504).send("..oops, our Report service is unavailable, but we will fix it :)")} });
+router.use('/report', reports);
+
 export default router;

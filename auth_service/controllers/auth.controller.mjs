@@ -1,4 +1,4 @@
-import ApiError from '../../global_router/exceptions/api.errors.mjs'; // Custom Api Errors
+import ApiError from '../../router_service/middleware/api.errors.mjs'; // Custom Api Errors
 import authJwt from '../middleware/auth.jwt.mjs';
 import bcrypt from 'bcryptjs';
 import db from '../models/index.mjs';
@@ -16,7 +16,7 @@ const refresh = async (req, res, next) => {
     await Token.destroy({ where: { token: req.cookies.refreshToken } });
     await Token.create({ userId: user.id, username: user.user, token: refreshToken });
 
-    res.cookie('refreshToken', refreshToken, { maxAge: 1000*60*60*24, httpOnly: true });
+    res.cookie('refreshToken', refreshToken, { maxAge: 1000*60*60*24, httpOnly: true, secure: true });
     res.status(200).send({ accessToken: accessToken });
   } catch (e) { next(e) };
 };
@@ -38,7 +38,7 @@ const signin = async (req, res, next) => {
     await Token.create({ userId: user.id, username: user.username, token: refreshToken });
     
     user.getRoles().then(role => {
-      res.cookie("refreshToken", refreshToken, { maxAge: 1000*60*60*24, httpOnly: true }); // 24h valid
+      res.cookie("refreshToken", refreshToken, { maxAge: 1000*60*60*24, httpOnly: true, secure: true }); // 24h valid
       res.status(200).send({
         id: user.userId,
         username: user.username,

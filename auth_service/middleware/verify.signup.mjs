@@ -1,4 +1,4 @@
-import ApiError from '../../global_router/exceptions/api.errors.mjs';
+import ApiError from '../../router_service/middleware/api.errors.mjs';
 import authJwt from './auth.jwt.mjs';
 import db from '../models/index.mjs';
 import nodemailer from 'nodemailer';

@@ -1,0 +1,18 @@
+{
+  "name": "report_service",
+  "version": "1.0.0",
+  "description": "REST API Router Service",
+  "type": "module",
+  "scripts": {
+    "dev": "node report.service.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0"
+  }
+}
